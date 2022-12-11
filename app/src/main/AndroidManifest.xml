@@ -9,7 +9,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/wp_logo"
-        android:label="@string/Which_Platform"
+        android:label="@string/WP"
         android:roundIcon="@drawable/bg"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTvShows"
