@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:id="@+id/WatchProviders_container"
+    app:cardBackgroundColor="@color/black"
+    android:layout_margin="8dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView_WatchProviders"
+            android:scaleType="centerCrop"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/WatchProvider_name_container"
+            android:text="Nom des plateformes"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
