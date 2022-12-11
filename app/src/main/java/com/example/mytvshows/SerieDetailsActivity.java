@@ -28,15 +28,15 @@ import com.squareup.picasso.Picasso;
 
 public class SerieDetailsActivity extends AppCompatActivity implements OnRecommendationClickListeners {
 
-    TextView textView_serie_name, textView_serie_first_air_date, textView_serie_last_air_date,textView_serie_runtime,textView_serie_rating, textView_serie_votes, textView_synopsis, textView_number_of_episode, textView_number_of_season;
+    TextView textView_serie_name, textView_serie_first_air_date, textView_serie_last_air_date,textView_serie_runtime,textView_serie_rating, textView_serie_votes, textView_synopsis, textView_number_of_episode, textView_number_of_season, textView_nonproviders;
 
     ImageView imageView_serie_poster;
     RecyclerView recycler_recommendation, WatchProviders_recycler_view, recycler_serie_cast;
     CastRecylerAdapter cast_adapter;
-    ProviderRecyclerAdapter adapter2;
-    RecommendationRecyclerAdapter adapter3;
-    Request_Manager manager, cast_manager;
-    Request_Manager manager2,manager3;
+    ProviderRecyclerAdapter provider_adapter;
+    RecommendationRecyclerAdapter recommendation_adapter;
+    Request_Manager Details_manager, cast_manager;
+    Request_Manager Providers_manager,Recommendation_manager;
     ProgressDialog dialog;
 
 
@@ -55,14 +55,15 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         textView_number_of_episode = findViewById(R.id.textView_number_of_episode);
         textView_number_of_season = findViewById(R.id.textView_number_of_seasons);
         textView_serie_last_air_date = findViewById(R.id.textView_serie_last_released);
+        textView_nonproviders = findViewById(R.id.streaming);
 
         WatchProviders_recycler_view = findViewById(R.id.watchProviders_recycler_view);
         recycler_recommendation = findViewById(R.id.recommendation_recycler_view);
         recycler_serie_cast = findViewById(R.id.recyler_serie_cast);
 
-        manager = new Request_Manager(this);
-        manager2 = new Request_Manager(this);
-        manager3 = new Request_Manager(this);
+        Details_manager = new Request_Manager(this);
+        Providers_manager = new Request_Manager(this);
+        Recommendation_manager = new Request_Manager(this);
         cast_manager = new Request_Manager(this);
 
         String serie_id = getIntent().getStringExtra("data");
@@ -71,15 +72,15 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         dialog.setTitle("Patientez...");
         dialog.show();
 
-        manager.searchSerieDetails(listener,serie_id);
-        manager2.searchWatchProviders(listener3,serie_id);
-        manager3.searchRecommendation(listeners,serie_id);
-        cast_manager.searchCastMembers(listener2,serie_id);
+        Details_manager.searchSerieDetails(Details_listener,serie_id);
+        Providers_manager.searchWatchProviders(Providers_listener,serie_id);
+        Recommendation_manager.searchRecommendation(listeners,serie_id);
+        cast_manager.searchCastMembers(Cast_listener,serie_id);
 
     }
 
 
-    private OnDetailsApiListeners listener = new OnDetailsApiListeners() {
+    private OnDetailsApiListeners Details_listener = new OnDetailsApiListeners() {
         @Override
         public void onResponse(DetailsApiResponse response) {
             dialog.dismiss();
@@ -96,7 +97,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         }
     };
 
-    private OnCastMembersApiListeners listener2 = new OnCastMembersApiListeners() {
+    private OnCastMembersApiListeners Cast_listener = new OnCastMembersApiListeners() {
         @Override
         public void onResponse(CastMembers response)
         {
@@ -115,7 +116,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         }
     };
 
-    private OnWatchProvidersApiListeners listener3 = new OnWatchProvidersApiListeners()
+    private OnWatchProvidersApiListeners Providers_listener = new OnWatchProvidersApiListeners()
     {
         @Override
         public void onResponse(WatchProvidersApiResponse response) {
@@ -156,12 +157,12 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         textView_serie_name.setText(response.getTitle());
         textView_serie_first_air_date.setText("Date de sortie du premier épisode : " + response.getFirst_air_date());
         textView_serie_last_air_date.setText("Date de sortie du dernier épisode : " + response.getLast_air_date());
-        textView_serie_runtime.setText("Durée du film : " + response.getEpisode_run_time()[0] + "min");
+        textView_serie_runtime.setText("Durée du film : " + response.getEpisode_run_time() + " min");
         textView_synopsis.setText("Synopsis : " + response.getOverview());
         textView_serie_votes.setText("Nombre de votes : " + response.getVote_count());
-        textView_serie_rating.setText("Notes : " + response.getVote_average() +"/10");
-        textView_number_of_episode.setText("Nombres total d'épisodes : " + response.getNumber_of_episodes());
-        textView_number_of_season.setText ("Nombres de saisons : " + response.getNumber_of_seasons());
+        textView_serie_rating.setText("Notes : " + response.getVote_average() + "/10 (source TMDB)");
+        textView_number_of_episode.setText("Nombre total d'épisodes : " + response.getNumber_of_episodes());
+        textView_number_of_season.setText ("Nombre de saisons : " + response.getNumber_of_seasons());
         try
         {
             Picasso.get().load(response.getPoster_path()).into(imageView_serie_poster);
@@ -180,16 +181,23 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
     }
    private void showResults3(WatchProvidersApiResponse response)
    {
-
        if(response.getResults().getFR() != null)
        {
            if(response.getResults().getFR().getFlatrate() != null)
            {
                WatchProviders_recycler_view.setHasFixedSize(true);
                WatchProviders_recycler_view.setLayoutManager(new GridLayoutManager(this, 2));
-               adapter2 = new ProviderRecyclerAdapter(this, response.getResults().getFR().getFlatrate(), listener3);
-               WatchProviders_recycler_view.setAdapter(adapter2);
+               provider_adapter = new ProviderRecyclerAdapter(this, response.getResults().getFR().getFlatrate(), Providers_listener);
+               WatchProviders_recycler_view.setAdapter(provider_adapter);
            }
+           else
+           {
+               textView_nonproviders.setText("Plateforme non communiquée");
+           }
+       }
+       else
+       {
+           textView_nonproviders.setText("Plateforme non communiquée");
        }
 
    }
@@ -197,8 +205,8 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
     {
         recycler_recommendation.setHasFixedSize(true);
         recycler_recommendation.setLayoutManager(new GridLayoutManager(this,3));
-        adapter3 = new RecommendationRecyclerAdapter(this,response.getResults(),this);
-        recycler_recommendation.setAdapter(adapter3);
+        recommendation_adapter = new RecommendationRecyclerAdapter(this,response.getResults(),this);
+        recycler_recommendation.setAdapter(recommendation_adapter);
 
     }
     @Override

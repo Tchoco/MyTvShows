@@ -23,6 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
     </androidx.cardview.widget.CardView>
+    <TextView
+        android:text="Populaires à travers le monde : "
+        android:textColor="@color/white"
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <androidx.cardview.widget.CardView
         app:cardBackgroundColor="@color/dgrey"
         app:cardElevation="8dp"

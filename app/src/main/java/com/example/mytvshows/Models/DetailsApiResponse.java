@@ -1,5 +1,7 @@
 package com.example.mytvshows.Models;
 
+import java.util.List;
+
 public class DetailsApiResponse
 {
     String name = "";
@@ -12,13 +14,21 @@ public class DetailsApiResponse
     String last_air_date = "";
     int number_of_episodes = 0;
     int number_of_seasons = 0;
-    int [] episode_run_time = {0};
+    List<Integer> episode_run_time = null;
 
-    public int[] getEpisode_run_time() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Integer> getEpisode_run_time() {
         return episode_run_time;
     }
 
-    public void setEpisode_run_time(int[] episode_run_time) {
+    public void setEpisode_run_time(List<Integer> episode_run_time) {
         this.episode_run_time = episode_run_time;
     }
 

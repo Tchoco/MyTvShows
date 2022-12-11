@@ -155,12 +155,21 @@
                 app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <TextView
+                    android:text=""
+                    android:id="@+id/streaming"
+                    android:textColor="@color/white"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/watchProviders_recycler_view"
                         android:layout_margin="8dp"
