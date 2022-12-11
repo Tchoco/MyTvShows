@@ -25,6 +25,7 @@
     </androidx.cardview.widget.CardView>
     <TextView
         android:text="Populaires à travers le monde : "
+        android:id="@+id/search_serie_text"
         android:textColor="@color/white"
         android:textAlignment="textStart"
         android:textStyle="bold"

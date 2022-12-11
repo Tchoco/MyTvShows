@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyTvShows</string>
     <string name="WhichPlateform">Which Plateform</string>
+    <string name="Which_Plateform">Which Plateform</string>
+    <string name="Which_Platform">Wich PlatForm</string>
+    <string name="Which__Platform">Which Platform</string>
 </resources>

@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytvshows.Listeners.OnSeriesClickListeners;
-import com.example.mytvshows.Models.SearchArrayObjectsForSearchMovies;
+import com.example.mytvshows.Models.Search.SearchArrayObjectsForSearchMovies;
 import com.example.mytvshows.R;
 import com.squareup.picasso.Picasso;
 

@@ -1,4 +1,4 @@
-package com.example.mytvshows.Models;
+package com.example.mytvshows.Models.SearchDetails;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytvshows.Listeners.OnSeriesClickListeners;
-import com.example.mytvshows.Models.PopularArrayObjects;
+import com.example.mytvshows.Models.Popular.PopularArrayObjects;
 import com.example.mytvshows.R;
 import com.squareup.picasso.Picasso;
 

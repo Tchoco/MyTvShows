@@ -1,6 +1,6 @@
-package com.example.mytvshows.Models;
+package com.example.mytvshows.Models.Search;
 
-public class PopularArrayObjects
+public class SearchArrayObjectsForSearchMovies
 {
     int id = 0;
     String poster_path ="";
@@ -31,4 +31,7 @@ public class PopularArrayObjects
     public void setName(String name) {
         this.name = name;
     }
+
+
+
 }

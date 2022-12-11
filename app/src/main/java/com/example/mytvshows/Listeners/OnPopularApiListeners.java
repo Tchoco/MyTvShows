@@ -1,6 +1,6 @@
 package com.example.mytvshows.Listeners;
 
-import com.example.mytvshows.Models.PopularApiResponse;
+import com.example.mytvshows.Models.Popular.PopularApiResponse;
 
 public interface OnPopularApiListeners
 {

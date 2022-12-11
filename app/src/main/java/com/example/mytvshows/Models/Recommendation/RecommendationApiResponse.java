@@ -1,7 +1,5 @@
 package com.example.mytvshows.Models.Recommendation;
 
-import com.example.mytvshows.Models.SearchArrayObjectsForSearchMovies;
-
 import java.util.List;
 
 public class RecommendationApiResponse

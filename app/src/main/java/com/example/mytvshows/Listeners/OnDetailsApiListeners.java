@@ -1,6 +1,6 @@
 package com.example.mytvshows.Listeners;
 
-import com.example.mytvshows.Models.DetailsApiResponse;
+import com.example.mytvshows.Models.SearchDetails.DetailsApiResponse;
 
 public interface OnDetailsApiListeners {
     void onResponse(DetailsApiResponse response);

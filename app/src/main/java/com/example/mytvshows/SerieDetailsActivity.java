@@ -18,10 +18,9 @@ import com.example.mytvshows.Listeners.OnCastMembersApiListeners;
 import com.example.mytvshows.Listeners.OnDetailsApiListeners;
 import com.example.mytvshows.Listeners.OnRecommendationApiListeners;
 import com.example.mytvshows.Listeners.OnRecommendationClickListeners;
-import com.example.mytvshows.Listeners.OnSeriesClickListeners;
 import com.example.mytvshows.Listeners.OnWatchProvidersApiListeners;
 import com.example.mytvshows.Models.Cast.CastMembers;
-import com.example.mytvshows.Models.DetailsApiResponse;
+import com.example.mytvshows.Models.SearchDetails.DetailsApiResponse;
 import com.example.mytvshows.Models.Recommendation.RecommendationApiResponse;
 import com.example.mytvshows.Models.providers.WatchProvidersApiResponse;
 import com.squareup.picasso.Picasso;
@@ -157,12 +156,20 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         textView_serie_name.setText(response.getTitle());
         textView_serie_first_air_date.setText("Date de sortie du premier épisode : " + response.getFirst_air_date());
         textView_serie_last_air_date.setText("Date de sortie du dernier épisode : " + response.getLast_air_date());
-        textView_serie_runtime.setText("Durée du film : " + response.getEpisode_run_time() + " min");
+        if(response.getEpisode_run_time().size() >= 1 )
+        {
+            textView_serie_runtime.setText("Durée d'un épisode : " + response.getEpisode_run_time().get(0) + " min");
+        }
+        else
+        {
+            textView_serie_runtime.setText("Durée d'un épisode : non communiqué");
+        }
         textView_synopsis.setText("Synopsis : " + response.getOverview());
-        textView_serie_votes.setText("Nombre de votes : " + response.getVote_count());
-        textView_serie_rating.setText("Notes : " + response.getVote_average() + "/10 (source TMDB)");
+        textView_serie_votes.setText("Nombre de votes : " + response.getVote_count() + " (sur TMDB)");
+        textView_serie_rating.setText("Notes : " + response.getVote_average() + "/10 (sur TMDB)");
         textView_number_of_episode.setText("Nombre total d'épisodes : " + response.getNumber_of_episodes());
         textView_number_of_season.setText ("Nombre de saisons : " + response.getNumber_of_seasons());
+
         try
         {
             Picasso.get().load(response.getPoster_path()).into(imageView_serie_poster);
@@ -172,6 +179,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
             e.printStackTrace();
         }
     }
+
     private void showResults2(CastMembers response)
     {
         recycler_serie_cast.setHasFixedSize(true);

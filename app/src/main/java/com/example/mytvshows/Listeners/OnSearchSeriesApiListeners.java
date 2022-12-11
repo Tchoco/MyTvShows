@@ -1,6 +1,6 @@
 package com.example.mytvshows.Listeners;
 
-import com.example.mytvshows.Models.SearchApiResponse;
+import com.example.mytvshows.Models.Search.SearchApiResponse;
 
 public interface OnSearchSeriesApiListeners
 {

@@ -1,4 +1,4 @@
-package com.example.mytvshows.Models;
+package com.example.mytvshows.Models.Popular;
 
 import java.util.List;
 

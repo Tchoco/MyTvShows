@@ -10,10 +10,10 @@ import com.example.mytvshows.Listeners.OnRecommendationApiListeners;
 import com.example.mytvshows.Listeners.OnSearchSeriesApiListeners;
 import com.example.mytvshows.Listeners.OnWatchProvidersApiListeners;
 import com.example.mytvshows.Models.Cast.CastMembers;
-import com.example.mytvshows.Models.DetailsApiResponse;
-import com.example.mytvshows.Models.PopularApiResponse;
+import com.example.mytvshows.Models.SearchDetails.DetailsApiResponse;
+import com.example.mytvshows.Models.Popular.PopularApiResponse;
 import com.example.mytvshows.Models.Recommendation.RecommendationApiResponse;
-import com.example.mytvshows.Models.SearchApiResponse;
+import com.example.mytvshows.Models.Search.SearchApiResponse;
 import com.example.mytvshows.Models.providers.WatchProvidersApiResponse;
 
 import retrofit2.Call;
