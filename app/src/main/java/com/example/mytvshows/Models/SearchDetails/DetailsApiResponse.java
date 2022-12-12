@@ -14,6 +14,16 @@ public class DetailsApiResponse
     String last_air_date = "";
     int number_of_episodes = 0;
     int number_of_seasons = 0;
+    int id = 0;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     List<Integer> episode_run_time = null;
 
     public String getName() {

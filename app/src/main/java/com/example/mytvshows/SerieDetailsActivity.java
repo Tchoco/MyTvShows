@@ -2,12 +2,16 @@ package com.example.mytvshows;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +29,14 @@ import com.example.mytvshows.Models.Recommendation.RecommendationApiResponse;
 import com.example.mytvshows.Models.providers.WatchProvidersApiResponse;
 import com.squareup.picasso.Picasso;
 
-public class SerieDetailsActivity extends AppCompatActivity implements OnRecommendationClickListeners {
+import java.net.URL;
 
-    TextView textView_serie_name, textView_serie_first_air_date, textView_serie_last_air_date,textView_serie_runtime,textView_serie_rating, textView_serie_votes, textView_synopsis, textView_number_of_episode, textView_number_of_season, textView_nonproviders;
+public class SerieDetailsActivity extends AppCompatActivity implements OnRecommendationClickListeners {
+    WebView webView;
+    String html;
+
+
+    TextView textView_serie_name, textView_serie_first_air_date, textView_serie_last_air_date,textView_serie_runtime,textView_serie_rating, textView_serie_votes, textView_synopsis, textView_number_of_episode, textView_number_of_season, textView_nonproviders, trailer_text;
 
     ImageView imageView_serie_poster;
     RecyclerView recycler_recommendation, WatchProviders_recycler_view, recycler_serie_cast;
@@ -55,10 +64,19 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         textView_number_of_season = findViewById(R.id.textView_number_of_seasons);
         textView_serie_last_air_date = findViewById(R.id.textView_serie_last_released);
         textView_nonproviders = findViewById(R.id.streaming);
+        trailer_text =  findViewById(R.id.trailer_text);
+
+        webView = findViewById(R.id.webview);
+        webView.setInitialScale(253);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
         WatchProviders_recycler_view = findViewById(R.id.watchProviders_recycler_view);
         recycler_recommendation = findViewById(R.id.recommendation_recycler_view);
         recycler_serie_cast = findViewById(R.id.recyler_serie_cast);
+
+
 
         Details_manager = new Request_Manager(this);
         Providers_manager = new Request_Manager(this);
@@ -170,6 +188,68 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         textView_number_of_episode.setText("Nombre total d'épisodes : " + response.getNumber_of_episodes());
         textView_number_of_season.setText ("Nombre de saisons : " + response.getNumber_of_seasons());
 
+        if (response.getId() == 31910)//naruto shippuden
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tj1k4uURzUM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html,"text/html",null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if (response.getId() == 46260) //naruto
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/yKELA1qBAKA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html,"text/html",null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 37854)//one piece
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VsKIrHlTvXg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 1429)//snk
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ymDAiSQFIrg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 85937)// kimetsu no yaiba
+        {
+            html ="<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VQGCKyvzIM4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 65930)//my hero academia
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/KxDgJE0OEBI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 1399)//games of thrones
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/gcTkNV5Vg1E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 1396)//breaking bad
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VFLkMDEO-Xc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 95479)//jujutsu kaisen
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eUTtCcHVVOA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+        if(response.getId() == 94605)//LOL Arcane
+        {
+            html = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/3Svs_hl897c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            webView.loadData(html, "text/html", null);
+            trailer_text.setVisibility(View.VISIBLE);
+        }
+
+
         try
         {
             Picasso.get().load(response.getPoster_path()).into(imageView_serie_poster);
@@ -178,6 +258,8 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         {
             e.printStackTrace();
         }
+
+
     }
 
     private void showResults2(CastMembers response)
