@@ -279,7 +279,7 @@ public class Request_Manager
                 "Accept: application/json",
         })
         //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
-        @GET("tv/popular")
+        @GET("tv/top_rated")
         Call<PopularApiResponse> callPopular(
                 @Query("api_key") String key,
                 @Query("language") String language,

@@ -166,7 +166,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
         }
         textView_synopsis.setText("Synopsis : " + response.getOverview());
         textView_serie_votes.setText("Nombre de votes : " + response.getVote_count() + " (sur TMDB)");
-        textView_serie_rating.setText("Notes : " + response.getVote_average() + "/10 (sur TMDB)");
+        textView_serie_rating.setText("Note : " + response.getVote_average() + "/10 (sur TMDB)");
         textView_number_of_episode.setText("Nombre total d'épisodes : " + response.getNumber_of_episodes());
         textView_number_of_season.setText ("Nombre de saisons : " + response.getNumber_of_seasons());
 

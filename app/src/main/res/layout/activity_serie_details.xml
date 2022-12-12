@@ -200,6 +200,7 @@
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recommendation_recycler_view"
+                        android:orientation="horizontal"
                         android:layout_margin="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"/>
