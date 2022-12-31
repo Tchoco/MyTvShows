@@ -52,7 +52,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serie_details);
-
+// liaison entres les variables et les éléments du layout
         textView_synopsis       = findViewById(R.id.textView_serie_plot);
         textView_serie_name     = findViewById(R.id.textView_serie_name);
         textView_serie_rating   = findViewById(R.id.textView_serie_rating);
@@ -96,7 +96,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
 
     }
 
-
+// action en fonction de la réponse de l'API
     private OnDetailsApiListeners Details_listener = new OnDetailsApiListeners() {
         @Override
         public void onResponse(DetailsApiResponse response) {
@@ -168,7 +168,7 @@ public class SerieDetailsActivity extends AppCompatActivity implements OnRecomme
             Toast.makeText(SerieDetailsActivity.this,"Une erreur03 est survenue",Toast.LENGTH_SHORT).show();
         }
     };
-
+// fonction nous permettant d'utiliser les reponses aux requête faites
     private void showResults(DetailsApiResponse response)
     {
         textView_serie_name.setText(response.getTitle());

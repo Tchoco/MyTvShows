@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnSeriesClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // liaison entre les varibales créées et les éléments du layout
         search_view = findViewById(R.id.search_view);
         home_recycler_view = findViewById(R.id.home_recycler_view);
         search_serie_textview = findViewById(R.id.search_serie_text);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements OnSeriesClickList
             }
         });
     }
-
+// quoi faire en fonction de la réponse de l'API
     private final OnSearchSeriesApiListeners listener = new OnSearchSeriesApiListeners() {
         @Override
         public void onResponse(SearchApiResponse response) {
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnSeriesClickList
 
         }
     };
-
+// fonction utilisant nos adapter et permettant de configurer certains paramètres de la recyclerview
     private void showResult(SearchApiResponse response)
     {
         home_recycler_view.setHasFixedSize(true);
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements OnSeriesClickList
         adapter_popular_series = new PopularRecyclerAdapter(this,response.getResults(),this);
         home_recycler_view.setAdapter(adapter_popular_series);
     }
-
+// un onclicklistener permettant de changer d'activité et sauvegarder la valeur "data" qui correspond à l'id de la série dans la series detail activity
     @Override
     public void onSerieClicked(String id)
     {

@@ -33,6 +33,7 @@ public class Request_Manager
             .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
     public Request_Manager(Context context)
     {
         this.context = context;
@@ -43,6 +44,7 @@ public class Request_Manager
         String key = "c46870fff6c94f30951b91811ae9238a";
         String page = "1";
         String include_adult = "false";
+        //utilisation de la bibliothèque retrofit pour gérer nos requêtes
         getSeries getSeries = retrofit.create(Request_Manager.getSeries.class);
         Call<SearchApiResponse> call = getSeries.callSeries(key,page,serie_name,include_adult);
         System.out.print(call);
@@ -209,10 +211,8 @@ public class Request_Manager
         @Headers({
                 "Accept: application/json",
         })
-        //@GET("search/movie?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US&query={movie_name}&page=1&include_adult=false")
         @GET("search/tv")
         Call<SearchApiResponse> callSeries(
-                //@Path("movie_name") String movie_name
                 @Query("api_key") String key,
                 @Query("page") String page,
                 @Query("query") String serie_name,
@@ -224,7 +224,6 @@ public class Request_Manager
         @Headers({
                 "Accept: application/json",
         })
-        //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
         @GET("tv/{serie_id}")
         Call<DetailsApiResponse> callSerieDetails(
                 @Path("serie_id") String id,
@@ -237,7 +236,6 @@ public class Request_Manager
         @Headers({
                 "Accept: application/json",
         })
-        //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
         @GET("tv/{serie_id}/watch/providers")
         Call<WatchProvidersApiResponse> callWatchProviders(
                 @Path("serie_id") String id,
@@ -250,7 +248,6 @@ public class Request_Manager
         @Headers({
                 "Accept: application/json",
         })
-        //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
         @GET("tv/{serie_id}/recommendations")
         Call<RecommendationApiResponse> callRecommendation(
                 @Path("serie_id") String id,
@@ -264,7 +261,6 @@ public class Request_Manager
         @Headers({
                 "Accept: application/json",
         })
-        //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
         @GET("tv/{serie_id}/credits")
         Call<CastMembers> callCastMembers(
                 @Path("serie_id") String id,
@@ -272,13 +268,11 @@ public class Request_Manager
                 @Query("page") String page
         );
     }
-
     public interface getPopularSeries
     {
         @Headers({
                 "Accept: application/json",
         })
-        //movie/101037?api_key=c46870fff6c94f30951b91811ae9238a&language=en-US
         @GET("tv/top_rated")
         Call<PopularApiResponse> callPopular(
                 @Query("api_key") String key,
